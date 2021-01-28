@@ -1,14 +1,18 @@
 module.exports = {
-  root: true,
-  env: {
-    es6: true,
-    node: true,
-  },
-  extends: [
-    "eslint:recommended",
-    "google",
-  ],
-  rules: {
-    quotes: ["error", "double"],
-  },
+    root: true,
+    env: {
+        node: true,
+    },
+    extends: [
+        "eslint:recommended",
+        "google",
+    ],
+    rules: {
+        "quotes": ["error", "double"],
+        "indent": "off",
+        "object-curly-spacing": "off",
+    },
+    parserOptions: {
+        ecmaVersion: 2020,
+    },
 };
