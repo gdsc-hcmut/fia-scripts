@@ -10,8 +10,9 @@ exports.badwordDetection = functions.database.ref("/messages/{pushId}")
         }
         // Grab the current value of what was written to the Realtime Database.
         // const prevMess = change.before.val();
-        let currMess = change.after.val();
-
+        const messageInfo = change.after.val();
+        let currMess = messageInfo.message;
+        console.log(currMess);
         // Only check if currData is different from prevMess or prevMess is null
         // if (prevMess && prevMess.message === currMess.message) {
         //     return null;
@@ -37,7 +38,7 @@ exports.badwordDetection = functions.database.ref("/messages/{pushId}")
         // return change.after.ref.set({ ...currMess, message: currMess });
         return admin.firestore().collection("statictisCollection")
             .doc("statictisDoc").set({
-                [context.auth.uid]:
+                [messageInfo.userId]:
                     admin.firestore.FieldValue.increment(numOfBadword),
             }, { merge: true });
     });
