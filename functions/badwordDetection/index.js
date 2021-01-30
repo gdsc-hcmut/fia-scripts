@@ -1,5 +1,6 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+admin.initializeApp();
 
 exports.badwordDetection = functions.database.ref("/messages/{pushId}")
     .onWrite(async (change, context) => {
